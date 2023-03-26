@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Terricolas</title>
+  </head>
+  <body>
+    <script>
+      // Función que calcula el número de saltos necesarios para llegar a la Tierra desde un planeta determinado
+      const calcularSaltos = (planeta) => {
+        let saltos = 0;
+        while (planeta !== 1) {
+          planeta = planeta % 2 === 0 ? planeta / 2 : planeta * 3 + 1;
+          saltos++;
+        }
+        return saltos;
+      };
+
+      // Función que solicita el número de planeta y muestra el resultado 
+      const main = () => {
+        let planeta = 0;
+        while (planeta <= 10000) {
+          planeta = parseInt(
+            prompt(
+              "Ingrese el número de planeta (debe ser mayor o igual a 10000):"
+            )
+          );
+        }
+        while (true) {
+          const numeroDeSaltos = calcularSaltos(planeta);
+          console.log(
+            `El número de saltos para llegar a la Tierra desde el planeta ${planeta} es ${numeroDeSaltos}.`
+          );
+          const continuar = prompt(
+            "¿Desea calcular el número de saltos para otro planeta? (S/N)"
+          ).toUpperCase();
+          if (continuar !== "S") {
+            break;
+          }
+          planeta = parseInt(
+            prompt(
+              "Ingrese el número de planeta (debe ser mayor o igual a 10000):"
+            )
+          );
+        }
+      };
+
+      main();
+    </script>
+  </body>
+</html>
